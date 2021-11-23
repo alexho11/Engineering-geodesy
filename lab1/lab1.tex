@@ -1,0 +1,111 @@
+\documentclass[12pt
+,headinclude
+,headsepline
+,bibtotocnumbered
+]{scrartcl}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry} 
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{pdfpages}
+%\usepackage{wrapfig}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{flafter}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+\usepackage[miktex]{gnuplottex}
+\usepackage[T1]{fontenc}
+\usepackage{mhchem}
+\usepackage{fancyhdr}
+%\setlength{\mathindent}{0pt}
+\usepackage{amssymb}
+\usepackage[list=true, font=large, labelfont=bf, 
+labelformat=brace, position=top]{subcaption}
+\setlength{\parindent}{0mm}
+
+\setlength{\parindent}{0mm}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ingenieurgeodäsie I\\Übung 1: Ausgleichung und Gütekriterien}
+\rhead{Hsin-Feng Ho \\3378849}
+\rfoot{Seite \thepage}
+\begin{document}
+	\section{Grafiken nach Ausgleichung}
+	\subsection{Teilspurminimierung}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{teilspur}
+		\caption{Ausgleichung mit Teilspurminimierung}
+	\end{figure}
+\subsection{Gesamtspurminimierung}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{gesamt}
+	\caption{Ausgleichung mit Gesamtspurminimierung}
+\end{figure}
+\subsection{Ausgleichung unter Zwang}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{zwang}
+	\caption{Ausgleichung unter Zwang}
+\end{figure}
+\section{Helmert'sche Punktfehler}
+Berechnung der Helmert'sche Punktfehler:
+\begin{align*}
+	\sigma_{H,i}=\sqrt{\sigma_{x,i}^{2}+\sigma_{y,i}^2}
+\end{align*}
+\begin{table}[H]
+	\centering
+	\renewcommand\arraystretch{1.3}
+	\setlength\tabcolsep{12pt}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Punktnummer&sy [mm]&sx [mm]&$\sigma$ [mm]\\\hline
+		101&0.53&0.70&0.88\\\hline
+		102&0.57&0.66&0.87\\\hline
+		103&0.60&0.65&0.88\\\hline
+		104&0.59&0.67&0.89\\\hline
+		904&0.75&0.69&1.02\\\hline
+		905&0.75&0.85&1.13\\\hline
+		906&0.70&0.69&0.98\\\hline
+		907&0.62&0.73&0.96\\\hline
+		908&0.78&0.72&1.06\\\hline
+		909&0.91&0.86&1.25\\\hline
+		910&0.83&0.79&1.14\\\hline
+		911&0.86&0.87&1.22\\\hline
+	\end{tabular}
+\end{table}
+\begin{itemize}
+	\item Helmert'sche Punktfehler wird als skalares Maß die mittelen Punktefehler angegeben. 
+	\item Konfidenzellipsen und Fehlerellipsen sind ähnlich. Sie stellen wie groß bzw. in welchen Richtung die Unsicherheit dar.
+\end{itemize}
+\section{Beurteilung der Qualität des Netzes}
+\textbf{Lokale Genauigkeit:}\\
+Die lokale Genauigkeit kann man mit Helmet'schen Punktfehler angeben. Die Werte sind alle in der Nähe von 1mm, was einer guten Genauigkeit in lokalem Bereich entspricht.\\ \\
+\textbf{Globale Genauigkeit:}\\
+Durch erweitertes Varianzkriterium kann die globale Genauigkeit bestimmt werden.
+\begin{align*}
+	trace(\Sigma_{XX})=12.77\,\mathrm{mm^2}
+\end{align*}
+\textbf{Innere Zuverlässigkeit:}\\
+Die Bedingungsdichte liefert die Information über die innere Zuverlässigkeit.
+\begin{align*}
+	b=\dfrac{r}{n}=\dfrac{100-24-12+3}{100}=0.67
+\end{align*}
+Dies bezeichnet eine gute Kontrollierbarkeit.\\\\
+\textbf{Äußere Zuverlässigkeit:}\\
+Die Auswirkung nicht aufgedeckter Fehler auf die relative Lage zwischen Nachbarpunkten
+\begin{align*}
+	\Phi^2_{0i}=(1-r)p_{ii}\nabla l_i^2\qquad \text{für nicht korrelierte Beobachtungen}
+\end{align*}
+Da $\Phi$ minimal zu erwarten ist, wird $\nabla$ mit den Werten der 28. und 29. Messungen berechnet. Damit ergibt sich:
+\begin{align*}
+	\Phi^2_{0i}=3,94\cdot10^{-11}
+\end{align*}
+\section{Vergleich}
+In der freien Ausgleichung wird das ganze Datum mitberücksichtigt, was zu den kleineren Fehlerellipsen im Gegensatz zur Ausgleichung unter Zwang führt. Bei der Verwendung vom Verfahren Ausgleichung unter Zwang müssen die Koordinaten der Festpunkte mit sehr hohen Genauigkeiten bestimmt werden, was in der Realität schwierig ist. Deswegen kann man feststellen, freie Ausgleichung praktischer ist.
+\end{document}
