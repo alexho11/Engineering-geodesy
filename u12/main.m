@@ -80,21 +80,13 @@ zlabel("Höhenanomalie")
 
 
 %% Aufgabe d
-A_2 = [ones(10,1), data(21:30,1) - s_y, data(21:30,2) - s_x, (data(21:30,1) - s_y).* (data(21:30,2) - s_x), (data(21:30,1) - s_y).^2, (data(21:30,2) - s_x).^2]; 
-for i=1:6
-    if isnan(id(i)) 
-        break
-    else
-        A_2(:,id(i)) = [];
-    end
-end
-zeta_2 = A_2 * x_d;    % Höhenanomalie 21 - 30
+zeta_2 = x_d(1)+x_d(2).*(data(21:30,1)-s_y)+x_d(3).*(data(21:30,1)-s_y).*(data(21:30,2)-s_x);
 NH_under =  data(21:30,4) - zeta_2; % Normalhöhen 21 - 30
 data(21:30,3) = NH_under;
 
 
 %% Aufgabe e
-F = [eye(10),A_2];
+F = [eye(10),-ones(10,1),-(data(21:30,1)-s_y),-(data(21:30,1)-s_y).*(data(21:30,2)-s_x)];
 [~,l] = size(F);
 Sigma_big = zeros(l,l);
 Sigma_big(1:10,1:10) = 0.005^2 * eye(10);
